@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiến thức - TADN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style-taskbar.css">
+</head>
+<body>
+    <div id="particles-bg" style="position:fixed;z-index:0;inset:0;"></div>
+    <header class="main-header">
+        <div class="container nav-flex">
+            <div class="logo">TADN <span class="flower-animation" style="display:inline-block;vertical-align:middle;margin-left:6px;margin-right:0;">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g>
+                    <circle cx="16" cy="16" r="5" fill="#FFD700"/>
+                    <g fill="#FF69B4">
+                      <ellipse cx="16" cy="5" rx="3" ry="6"/>
+                      <ellipse cx="16" cy="27" rx="3" ry="6"/>
+                      <ellipse cx="5" cy="16" rx="6" ry="3"/>
+                      <ellipse cx="27" cy="16" rx="6" ry="3"/>
+                      <ellipse cx="8.5" cy="8.5" rx="3" ry="6" transform="rotate(-45 8.5 8.5)"/>
+                      <ellipse cx="23.5" cy="8.5" rx="3" ry="6" transform="rotate(45 23.5 8.5)"/>
+                      <ellipse cx="8.5" cy="23.5" rx="3" ry="6" transform="rotate(45 8.5 23.5)"/>
+                      <ellipse cx="23.5" cy="23.5" rx="3" ry="6" transform="rotate(-45 23.5 23.5)"/>
+                    </g>
+                  </g>
+                </svg>
+            </span></div>
+            <nav class="nav-bar">
+                <button class="nav-hamburger" id="nav-hamburger" aria-label="Mở menu" style="background:none;border:none;padding:0 8px 0 0;cursor:pointer;font-size:1.6em;line-height:1;display:none;">
+                    &#9776;
+                </button>
+                <ul class="nav-list">
+    <li class="nav-dropdown">
+        <a href="index.html">Trang chủ</a>
+        <ul class="dropdown-menu">
+            <li><a href="index.html#gioi-thieu">Giới thiệu</a></li>
+            <li><a href="index.html#contact">Liên hệ nhanh</a></li>
+        </ul>
+    </li>
+    <li class="nav-protect nav-dropdown">
+        <a href="https://www.ctu.edu.vn/" target="_blank" rel="noopener noreferrer">Tin tức</a>
+        <ul class="dropdown-menu">
+            <li><a href="https://www.ctu.edu.vn/tin-tuc-su-kien" target="_blank">Sự kiện</a></li>
+            <li><a href="https://www.ctu.edu.vn/thong-bao" target="_blank">Thông báo</a></li>
+        </ul>
+    </li>
+    <li class="nav-protect nav-dropdown">
+        <a href="kien-thuc.html" class="active">Kiến thức</a>
+        <ul class="dropdown-menu">
+            <li><a href="kien-thuc.html#ly-thuyet">Lý thuyết</a></li>
+            <li><a href="kien-thuc.html#bai-tap">Bài tập</a></li>
+            <li><a href="kien-thuc.html#tai-lieu">Tài liệu học tập</a></li>
+        </ul>
+    </li>
+    <li class="nav-dropdown">
+        <a href="https://www.facebook.com/kasu909?locale=vi_VN" target="_blank" rel="noopener noreferrer">Liên hệ</a>
+        <ul class="dropdown-menu">
+            <li><a href="mailto:lytuan267728@gmail.com">Email</a></li>
+            <li><a href="tel:09xxxxxxxx">Hotline</a></li>
+            <li><a href="https://www.facebook.com/kasu909?locale=vi_VN" target="_blank">Facebook</a></li>
+        </ul>
+    </li>
+    <li class="nav-protect nav-dropdown">
+        <a href="tim-them.html">Tìm thêm</a>
+        <ul class="dropdown-menu">
+            <li><a href="tim-them.html#de-thi">Đề thi</a></li>
+            <li><a href="tim-them.html#sach">Sách</a></li>
+            <li><a href="tim-them.html#khoa-hoc">Khóa học</a></li>
+        </ul>
+    </li>
+    <li class="nav-protect nav-dropdown">
+        <a href="review.html">Đánh giá</a>
+        <ul class="dropdown-menu">
+            <li><a href="review.html#danh-gia">Góp ý</a></li>
+            <li><a href="review.html#bao-loi">Báo lỗi</a></li>
+        </ul>
+    </li>
+    <li class="nav-protect nav-dropdown" id="nav-profile-btn" style="display:none;">
+        <a href="profile.html">Profile</a>
+        <ul class="dropdown-menu">
+            <li><a href="profile.html">Thông tin cá nhân</a></li>
+            <li><a href="settings.html">Cài đặt</a></li>
+        </ul>
+    </li>
+    <li class="nav-dropdown" id="nav-auth-btn">
+        <a href="login.html" class="nav-btn">Đăng nhập</a>
+        <ul class="dropdown-menu">
+            <li><a href="login.html">Đăng nhập</a></li>
+            <li><a href="register.html">Đăng ký</a></li>
+        </ul>
+    </li>
+</ul>
+                <div class="mobile-menu" id="mobile-menu" style="display:none;position:fixed;top:44px;right:0;width:70vw;max-width:260px;background:#232526;border-radius:0 0 12px 12px;box-shadow:0 4px 24px rgba(0,255,231,0.13);z-index:999;">
+                    <ul style="list-style:none;margin:0;padding:18px 0;">
+                        <li><a href="index.html" aria-label="Trang chủ">
+                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;">
+                                <path d="M4 12L14 4L24 12" stroke="#00ffe7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M6 10V22H22V10" stroke="#00ffe7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a></li>
+                        <li><a href="https://www.ctu.edu.vn/" target="_blank" rel="noopener noreferrer">Tin tức</a></li>
+                        <li><a href="kien-thuc.html">Kiến thức</a></li>
+                        <li><a href="https://www.facebook.com/kasu909?locale=vi_VN" target="_blank" rel="noopener noreferrer">Liên hệ</a></li>
+                        <li><a href="tim-them.html">Tìm thêm</a></li>
+                        <li><a href="review.html">Đánh giá</a></li>
+                        <li><a href="login.html">Đăng nhập</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main class="container" style="position:relative;z-index:1;">
+        <h1 style="text-align:center;margin-bottom:24px;color:#00b3ff;letter-spacing:1px;">Kiến thức</h1>
+        <nav class="sub-knowledge-nav">
+            <a href="#ly-thuyet" class="sub-nav-link">Lý thuyết</a>
+            <a href="#bai-tap" class="sub-nav-link">Bài tập</a>
+            <a href="tieng-trung.html" class="sub-nav-link">Tiếng Trung</a>
+        </nav>
+        <style>
+        .sub-knowledge-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 56px;
+            margin-bottom: 40px;
+            width: 100%;
+        }
+        .sub-nav-link {
+            color: #00b3ff;
+            font-weight: 700;
+            font-size: 1.6em;
+            text-decoration: none;
+            padding: 18px 48px;
+            border-radius: 32px;
+            background: rgba(0,255,231,0.07);
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 12px rgba(0,255,231,0.08);
+            display: inline-block;
+        }
+        .sub-nav-link:hover {
+            background: linear-gradient(90deg, #00ffe7 0%, #00b3ff 100%);
+            color: #232526;
+            box-shadow: 0 4px 24px rgba(0,255,231,0.18);
+        }
+        </style>
+            </main>
+    <footer class="main-footer" style="z-index:2;position:relative;">
+        <div class="container" style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:center;gap:32px;padding:32px 0 0 0;">
+            <div style="flex:1;min-width:180px;max-width:260px;text-align:center;">
+                <div class="logo" style="font-size:1.5em;letter-spacing:1px;color:#00ffe7;margin-bottom:8px;">TADN</div>
+                <div style="color:#b2fefa;font-size:1em;">Nền tảng chia sẻ kiến thức, tin tức, tài liệu và cộng đồng công nghệ.</div>
+            </div>
+            <div style="flex:1;min-width:180px;max-width:260px;text-align:center;">
+                <h3 style="color:#00ffe7;margin-top:0;margin-bottom:10px;font-size:1.08em;">Liên hệ</h3>
+                <div style="color:#b2fefa;font-size:0.98em;line-height:1.7;">
+                    <div><b>Email:</b> <a href="mailto:lytuan267728@gmail.com" style="color:#00b3ff;">lytuan267728@gmail.com</a></div>
+                    <div><b>Hotline:</b> 09********</div>
+                    <div><b>Địa chỉ:</b> Ninh Kiều, Cần Thơ</div>
+                </div>
+            </div>
+            <div style="flex:1;min-width:180px;max-width:260px;text-align:center;">
+                <h3 style="color:#00ffe7;margin-top:0;margin-bottom:10px;font-size:1.08em;">Chính sách</h3>
+                <ul style="list-style:none;padding:0;margin:0 0 10px 0;">
+                    <li><a href="#" style="color:#00b3ff;text-decoration:none;">Chính sách bảo mật</a></li>
+                    <li><a href="#" style="color:#00b3ff;text-decoration:none;">Quy định sử dụng</a></li>
+                    <li><a href="#" style="color:#00b3ff;text-decoration:none;">Bản quyền nội dung</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align:center;color:#b2fefa;font-size:0.97em;margin-top:18px;padding-bottom:12px;">
+            <b>Bản quyền:</b> Mọi nội dung trên website thuộc bản quyền của TADN. Nghiêm cấm sao chép, phát hành lại khi chưa được phép.<br>
+            <span style="color:#b2fefa;">Copyright © 2024 TADN. All rights reserved.</span>
+        </div>
+    </footer>
+<script>
+// Particles background effect (inspired by reactbits.dev)
+const canvas = document.createElement('canvas');
+canvas.style.width = '100vw';
+canvas.style.height = '100vh';
+canvas.style.position = 'fixed';
+canvas.style.inset = 0;
+canvas.style.zIndex = 0;
+canvas.style.pointerEvents = 'none';
+canvas.id = 'particles-canvas';
+document.getElementById('particles-bg').appendChild(canvas);
+const ctx = canvas.getContext('2d');
+let w = window.innerWidth, h = window.innerHeight;
+canvas.width = w;
+canvas.height = h;
+window.addEventListener('resize', () => {
+    w = window.innerWidth;
+    h = window.innerHeight;
+    canvas.width = w;
+    canvas.height = h;
+});
+const PARTICLE_NUM = 60;
+const PARTICLE_COLOR = '#00ffe7';
+const PARTICLE_RADIUS = 2.2;
+const PARTICLE_SPEED = 0.7;
+const LINK_DIST = 120;
+let particles = [];
+for (let i = 0; i < PARTICLE_NUM; i++) {
+    particles.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * PARTICLE_SPEED,
+        vy: (Math.random() - 0.5) * PARTICLE_SPEED
+    });
+}
+function drawParticles() {
+    ctx.clearRect(0, 0, w, h);
+    // Draw links
+    for (let i = 0; i < PARTICLE_NUM; i++) {
+        for (let j = i + 1; j < PARTICLE_NUM; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < LINK_DIST) {
+                ctx.strokeStyle = 'rgba(0,255,231,' + (1 - dist / LINK_DIST) * 0.5 + ')';
+                ctx.lineWidth = 1.1;
+                ctx.beginPath();
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.stroke();
+            }
+        }
+    }
+    // Draw particles
+    for (let i = 0; i < PARTICLE_NUM; i++) {
+        ctx.beginPath();
+        ctx.arc(particles[i].x, particles[i].y, PARTICLE_RADIUS, 0, 2 * Math.PI);
+        ctx.fillStyle = PARTICLE_COLOR;
+        ctx.shadowColor = '#00ffe7';
+        ctx.shadowBlur = 8;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+    }
+}
+function updateParticles() {
+    for (let i = 0; i < PARTICLE_NUM; i++) {
+        particles[i].x += particles[i].vx;
+        particles[i].y += particles[i].vy;
+        if (particles[i].x < 0 || particles[i].x > w) particles[i].vx *= -1;
+        if (particles[i].y < 0 || particles[i].y > h) particles[i].vy *= -1;
+    }
+}
+function animate() {
+    updateParticles();
+    drawParticles();
+    requestAnimationFrame(animate);
+}
+animate();
+</script>
+</body>
+</html>

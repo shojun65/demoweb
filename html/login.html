@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập / Đăng ký - TADN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/loading.css">
+    <style>
+        body {
+            min-height: 100vh;
+            background: linear-gradient(120deg, #232526 0%, #00b3ff 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .auth-container {
+            background: rgba(35,37,38,0.98);
+            border-radius: 24px;
+            box-shadow: 0 8px 48px 0 rgba(0,255,231,0.18), 0 1.5px 8px 0 rgba(0,179,255,0.10);
+            padding: 44px 36px 36px 36px;
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+        .auth-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 32px;
+        }
+        .auth-tab {
+            flex: 1;
+            text-align: center;
+            padding: 14px 0;
+            cursor: pointer;
+            font-weight: 700;
+            color: #00b3ff;
+            background: none;
+            border: none;
+            font-size: 1.2em;
+            border-radius: 18px 18px 0 0;
+            transition: color 0.2s, background 0.2s;
+            letter-spacing: 1px;
+        }
+        .auth-tab.active {
+            color: #232526;
+            background: linear-gradient(90deg, #00ffe7 0%, #00b3ff 100%);
+        }
+        .auth-form {
+            display: none;
+            flex-direction: column;
+            gap: 18px;
+            animation: fadeIn 0.5s;
+        }
+        .auth-form.active {
+            display: flex;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .auth-form input {
+            padding: 14px 16px;
+            border-radius: 8px;
+            border: 1.5px solid #00b3ff;
+            background: #232526;
+            color: #eaeaea;
+            font-size: 1.1em;
+            outline: none;
+            transition: border 0.2s;
+        }
+        .auth-form input:focus {
+            border: 1.5px solid #00ffe7;
+        }
+        .auth-form button[type="submit"] {
+            background: linear-gradient(90deg, #00ffe7 0%, #00b3ff 100%);
+            color: #232526;
+            border: none;
+            padding: 15px 0;
+            border-radius: 30px;
+            font-size: 1.15em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 12px rgba(0,255,231,0.15);
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        .auth-form button[type="submit"]:hover {
+            background: linear-gradient(90deg, #00b3ff 0%, #00ffe7 100%);
+            color: #fff;
+            box-shadow: 0 4px 24px rgba(0,255,231,0.25);
+        }
+        .form-msg {
+            min-height: 24px;
+            font-size: 1em;
+            text-align: center;
+            margin-top: 6px;
+        }
+        .auth-logo {
+            text-align: center;
+            font-size: 2.1em;
+            font-weight: bold;
+            color: #00ffe7;
+            letter-spacing: 2px;
+            margin-bottom: 18px;
+        }
+        @media (max-width: 600px) {
+            .auth-container {
+                padding: 14px 2vw 10px 2vw;
+                border-radius: 12px;
+            }
+            .auth-logo {
+                font-size: 1.1em;
+                letter-spacing: 1px;
+                margin-bottom: 10px;
+            }
+            .auth-tabs {
+                margin-bottom: 16px;
+            }
+            .auth-tab {
+                font-size: 1em;
+                padding: 8px 0;
+                border-radius: 10px 10px 0 0;
+            }
+            .auth-form input {
+                font-size: 1em;
+                padding: 10px 8px;
+                border-radius: 6px;
+            }
+            .auth-form button[type="submit"] {
+                font-size: 1em;
+                padding: 10px 0;
+                border-radius: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Effect Start -->
+    <div class="Strich1" id="global-loading">
+      <div class="Strich2">
+        <div class="bubble"></div>
+        <div class="bubble1"></div>
+        <div class="bubble2"></div>
+        <div class="bubble3"></div>
+        <div class="bubble4"></div>
+      </div>
+    </div>
+    <!-- Loading Effect End -->
+    <div class="auth-container">
+        <div class="auth-logo">TADN</div>
+        <div class="auth-tabs">
+            <button class="auth-tab active" id="tab-login">Đăng nhập</button>
+            <button class="auth-tab" id="tab-register">Đăng ký</button>
+        </div>
+        <form class="auth-form active" id="form-login" autocomplete="off">
+            <input type="text" id="loginUser" placeholder="Tên đăng nhập hoặc Email" required>
+            <input type="password" id="loginPass" placeholder="Mật khẩu" required>
+            <button type="submit">Đăng nhập</button>
+            <div class="form-msg" id="loginMsg"></div>
+        </form>
+        <form class="auth-form" id="form-register" autocomplete="off">
+            <input type="text" id="regUser" placeholder="Tên đăng nhập" required>
+            <input type="email" id="regEmail" placeholder="Email" required>
+            <input type="password" id="regPass" placeholder="Mật khẩu" required>
+            <input type="password" id="regPass2" placeholder="Nhập lại mật khẩu" required>
+            <button type="submit">Đăng ký</button>
+            <div class="form-msg" id="registerMsg"></div>
+        </form>
+    </div>
+    <script>
+    // Tab animation
+    const tabLogin = document.getElementById('tab-login');
+    const tabRegister = document.getElementById('tab-register');
+    const formLogin = document.getElementById('form-login');
+    const formRegister = document.getElementById('form-register');
+    tabLogin.onclick = () => {
+        tabLogin.classList.add('active');
+        tabRegister.classList.remove('active');
+        formLogin.classList.add('active');
+        formRegister.classList.remove('active');
+    };
+    tabRegister.onclick = () => {
+        tabRegister.classList.add('active');
+        tabLogin.classList.remove('active');
+        formRegister.classList.add('active');
+        formLogin.classList.remove('active');
+    };
+    // Login form
+    formLogin.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const user = document.getElementById('loginUser').value.trim();
+        const pass = document.getElementById('loginPass').value;
+        const msg = document.getElementById('loginMsg');
+        if (user && pass) {
+            msg.style.color = '#00ffe7';
+            msg.textContent = 'Đăng nhập thành công!';
+            localStorage.setItem('account', JSON.stringify({ username: user }));
+            setTimeout(() => { msg.textContent = ''; window.location.href = 'index.html'; }, 1000);
+        } else {
+            msg.style.color = '#ff4d4d';
+            msg.textContent = 'Vui lòng nhập đ��� tên đăng nhập/email và mật khẩu.';
+        }
+    });
+    // Register form
+    formRegister.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const user = document.getElementById('regUser').value.trim();
+        const email = document.getElementById('regEmail').value.trim();
+        const pass = document.getElementById('regPass').value;
+        const pass2 = document.getElementById('regPass2').value;
+        const msg = document.getElementById('registerMsg');
+        if (!user || !email || !pass || !pass2) {
+            msg.style.color = '#ff4d4d';
+            msg.textContent = 'Vui lòng nhập đầy đủ thông tin.';
+        } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+            msg.style.color = '#ff4d4d';
+            msg.textContent = 'Email không hợp lệ.';
+        } else if (pass.length < 6) {
+            msg.style.color = '#ff4d4d';
+            msg.textContent = 'Mật khẩu phải từ 6 ký tự.';
+        } else if (pass !== pass2) {
+            msg.style.color = '#ff4d4d';
+            msg.textContent = 'Mật khẩu nhập lại không khớp.';
+        } else {
+            msg.style.color = '#00ffe7';
+            msg.textContent = 'Đ��ng ký thành công!';
+            localStorage.setItem('account', JSON.stringify({ username: user }));
+            setTimeout(() => { msg.textContent = ''; window.location.href = 'index.html'; }, 1000);
+        }
+    });
+    </script>
+<footer class="main-footer" style="z-index:2;position:relative;">
+    <div class="container" style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:center;gap:32px;padding:32px 0 0 0;">
+        <div style="flex:1;min-width:180px;max-width:260px;text-align:center;">
+            <div class="logo" style="font-size:1.5em;letter-spacing:1px;color:#00ffe7;margin-bottom:8px;">TADN</div>
+            <div style="color:#b2fefa;font-size:1em;">Nền tảng chia sẻ kiến thức, tin tức, tài liệu và cộng đồng công nghệ.</div>
+        </div>
+        <div style="flex:1;min-width:180px;max-width:260px;text-align:center;">
+            <h3 style="color:#00ffe7;margin-top:0;margin-bottom:10px;font-size:1.08em;">Liên hệ</h3>
+            <div style="color:#b2fefa;font-size:0.98em;line-height:1.7;">
+                <div><b>Email:</b> <a href="mailto:lytuan267728@gmail.com" style="color:#00b3ff;">lytuan267728@gmail.com</a></div>
+                <div><b>Hotline:</b> 09********</div>
+                <div><b>��ịa chỉ:</b> Ninh Kiều, Cần Thơ</div>
+            </div>
+        </div>
+        <div style="flex:1;min-width:180px;max-width:260px;text-align:center;">
+            <h3 style="color:#00ffe7;margin-top:0;margin-bottom:10px;font-size:1.08em;">Chính sách</h3>
+            <ul style="list-style:none;padding:0;margin:0 0 10px 0;">
+                <li><a href="#" style="color:#00b3ff;text-decoration:none;">Chính sách bảo mật</a></li>
+                <li><a href="#" style="color:#00b3ff;text-decoration:none;">Quy định sử dụng</a></li>
+                <li><a href="#" style="color:#00b3ff;text-decoration:none;">Bản quyền nội dung</a></li>
+            </ul>
+        </div>
+    </div>
+    <div style="text-align:center;color:#b2fefa;font-size:0.97em;margin-top:18px;padding-bottom:12px;">
+        <b>Bản quyền:</b> Mọi nội dung trên website thuộc bản quyền của TADN. Nghiêm cấm sao chép, phát hành lại khi chưa được phép.<br>
+        <span style="color:#b2fefa;">Copyright © 2024 TADN. All rights reserved.</span>
+    </div>
+</footer>
+</body>
+</html>

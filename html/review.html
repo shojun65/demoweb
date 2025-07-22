@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đánh giá trang web - TADN</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/review.css" />
+    <link rel="stylesheet" href="../css/loading.css" />
+    <style>
+      .review-container {
+        max-width: 520px;
+        margin: 48px auto 0 auto;
+        background: rgba(30, 32, 34, 0.55);
+        border-radius: 18px;
+        box-shadow: 0 2px 16px rgba(0, 255, 231, 0.1);
+        padding: 36px 28px 28px 28px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .review-title {
+        color: #00ffe7;
+        font-size: 2em;
+        font-weight: 700;
+        margin-bottom: 18px;
+        text-align: center;
+      }
+      .review-form label {
+        font-weight: 600;
+        color: #00b3ff;
+      }
+      .review-form input,
+      .review-form select,
+      .review-form textarea {
+        width: 100%;
+        padding: 12px 16px;
+        border-radius: 8px;
+        border: 1.5px solid #00b3ff;
+        background: #232526;
+        color: #eaeaea;
+        font-size: 1em;
+        outline: none;
+        margin-bottom: 12px;
+      }
+      .review-form button[type="submit"] {
+        background: linear-gradient(90deg, #00ffe7 0%, #00b3ff 100%);
+        color: #232526;
+        border: none;
+        padding: 13px 0;
+        border-radius: 30px;
+        font-size: 1.1em;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 2px 12px rgba(0, 255, 231, 0.15);
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        position: relative;
+        overflow: hidden;
+        margin-top: 8px;
+        width: 100%;
+      }
+      .review-form button[type="submit"]:hover {
+        background: linear-gradient(90deg, #00b3ff 0%, #00ffe7 100%);
+        color: #fff;
+        box-shadow: 0 4px 24px rgba(0, 255, 231, 0.25);
+      }
+      .review-list {
+        margin-top: 32px;
+        width: 100%;
+      }
+      .review-item {
+        background: rgba(0, 255, 231, 0.07);
+        border-radius: 12px;
+        padding: 16px 14px;
+        margin-bottom: 16px;
+        box-shadow: 0 2px 8px rgba(0, 255, 231, 0.08);
+      }
+      .review-item .review-name {
+        color: #00ffe7;
+        font-weight: 700;
+      }
+      .review-item .review-rating {
+        color: #ffd700;
+        font-size: 1.2em;
+        margin-left: 8px;
+      }
+      .review-item .review-comment {
+        color: #eaeaea;
+        margin-top: 6px;
+      }
+      .review-list-title {
+        color: #00b3ff;
+        font-size: 1.2em;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+      @media (max-width: 600px) {
+        .review-container {
+          padding: 14px 2vw 10px 2vw;
+          border-radius: 12px;
+        }
+        .review-title {
+          font-size: 1.2em;
+          margin-bottom: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loading Effect Start -->
+    <div class="Strich1" id="global-loading">
+      <div class="Strich2">
+        <div class="bubble"></div>
+        <div class="bubble1"></div>
+        <div class="bubble2"></div>
+        <div class="bubble3"></div>
+        <div class="bubble4"></div>
+      </div>
+    </div>
+    <!-- Loading Effect End -->
+    <nav style="text-align: center; margin-top: 18px">
+      <a href="index.html">Trang chủ</a> |
+      <a href="kien-thuc.html">Kiến thức</a> |
+      <a href="tim-them.html">Tìm thêm</a> |
+      <a href="review.html">Đánh giá</a>
+    </nav>
+    <main>
+      <div class="review-container">
+        <div class="review-title">Đánh giá website TADN</div>
+        <form id="reviewForm" class="review-form">
+          <label for="name">Tên của bạn:</label>
+          <input type="text" id="name" name="name" required />
+          <label for="rating">Số sao:</label>
+          <select id="rating" name="rating" required>
+            <option value="">Chọn số sao</option>
+            <option value="5">5 ⭐</option>
+            <option value="4">4 ⭐</option>
+            <option value="3">3 ⭐</option>
+            <option value="2">2 ⭐</option>
+            <option value="1">1 ⭐</option>
+          </select>
+          <label for="comment">Nhận xét:</label>
+          <textarea id="comment" name="comment" rows="4" required></textarea>
+          <button type="submit">Gửi đánh giá</button>
+          <div
+            id="formMsg"
+            style="
+              min-height: 24px;
+              text-align: center;
+              margin-top: 8px;
+              font-size: 1em;
+            "
+          ></div>
+        </form>
+        <div class="review-list">
+          <div class="review-list-title">Đánh giá gần đây</div>
+          <div id="reviewList"></div>
+        </div>
+      </div>
+    </main>
+    <footer class="main-footer" style="z-index: 2; position: relative">
+      <div
+        class="container"
+        style="
+          display: flex;
+          flex-wrap: wrap;
+          align-items: flex-start;
+          justify-content: center;
+          gap: 32px;
+          padding: 32px 0 0 0;
+        "
+      >
+        <div
+          style="
+            flex: 1;
+            min-width: 180px;
+            max-width: 260px;
+            text-align: center;
+          "
+        >
+          <div
+            class="logo"
+            style="
+              font-size: 1.5em;
+              letter-spacing: 1px;
+              color: #00ffe7;
+              margin-bottom: 8px;
+            "
+          >
+            TADN
+          </div>
+          <div style="color: #b2fefa; font-size: 1em">
+            Nền tảng chia sẻ kiến thức, tin tức, tài liệu và cộng đồng công
+            nghệ.
+          </div>
+        </div>
+        <div
+          style="
+            flex: 1;
+            min-width: 180px;
+            max-width: 260px;
+            text-align: center;
+          "
+        >
+          <h3
+            style="
+              color: #00ffe7;
+              margin-top: 0;
+              margin-bottom: 10px;
+              font-size: 1.08em;
+            "
+          >
+            Liên hệ
+          </h3>
+          <div style="color: #b2fefa; font-size: 0.98em; line-height: 1.7">
+            <div>
+              <b>Email:</b>
+              <a href="mailto:lytuan267728@gmail.com" style="color: #00b3ff"
+                >lytuan267728@gmail.com</a
+              >
+            </div>
+            <div><b>Hotline:</b> 09********</div>
+            <div><b>Địa chỉ:</b> Ninh Kiều, Cần Thơ</div>
+          </div>
+        </div>
+        <div
+          style="
+            flex: 1;
+            min-width: 180px;
+            max-width: 260px;
+            text-align: center;
+          "
+        >
+          <h3
+            style="
+              color: #00ffe7;
+              margin-top: 0;
+              margin-bottom: 10px;
+              font-size: 1.08em;
+            "
+          >
+            Chính sách
+          </h3>
+          <ul style="list-style: none; padding: 0; margin: 0 0 10px 0">
+            <li>
+              <a href="#" style="color: #00b3ff; text-decoration: none"
+                >Chính sách bảo mật</a
+              >
+            </li>
+            <li>
+              <a href="#" style="color: #00b3ff; text-decoration: none"
+                >Quy định sử dụng</a
+              >
+            </li>
+            <li>
+              <a href="#" style="color: #00b3ff; text-decoration: none"
+                >Bản quyền nội dung</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div
+        style="
+          text-align: center;
+          color: #b2fefa;
+          font-size: 0.97em;
+          margin-top: 18px;
+          padding-bottom: 12px;
+        "
+      >
+        <b>Bản quyền:</b> Mọi nội dung trên website thuộc bản quyền của TADN.
+        Nghiêm cấm sao chép, phát hành lại khi chưa được phép.<br />
+        <span style="color: #b2fefa"
+          >Copyright © 2024 TADN. All rights reserved.</span
+        >
+      </div>
+    </footer>
+    <script>
+      // Hiệu ứng loading đồng bộ sẽ tự động ẩn bằng script.js
+
+      // Đánh giá lưu localStorage
+      function renderReviews() {
+        const list = document.getElementById("reviewList");
+        list.innerHTML = "";
+        const reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
+        if (reviews.length === 0) {
+          list.innerHTML =
+            '<div style="color:#b2fefa;text-align:center;">Chưa có đánh giá nào.</div>';
+          return;
+        }
+        reviews
+          .slice()
+          .reverse()
+          .forEach((r) => {
+            const div = document.createElement("div");
+            div.className = "review-item";
+            div.innerHTML = `<span class="review-name">${
+              r.name
+            }</span> <span class="review-rating">${"★".repeat(
+              r.rating
+            )}${"☆".repeat(5 - r.rating)}</span><div class="review-comment">${
+              r.comment
+            }</div>`;
+            list.appendChild(div);
+          });
+      }
+      document.getElementById("reviewForm").onsubmit = function (e) {
+        e.preventDefault();
+        showLoading();
+        setTimeout(() => {
+          const name = document.getElementById("name").value.trim();
+          const rating = parseInt(document.getElementById("rating").value);
+          const comment = document.getElementById("comment").value.trim();
+          const msg = document.getElementById("formMsg");
+          if (!name || !rating || !comment) {
+            msg.style.color = "#ff4d4d";
+            msg.textContent = "Vui lòng nhập đầy đủ thông tin.";
+            hideLoading();
+            return;
+          }
+          const reviews = JSON.parse(localStorage.getItem("reviews") || "[]");
+          reviews.push({ name, rating, comment });
+          localStorage.setItem("reviews", JSON.stringify(reviews));
+          msg.style.color = "#00ffe7";
+          msg.textContent = "Cảm ơn bạn đã đánh giá!";
+          document.getElementById("reviewForm").reset();
+          renderReviews();
+          setTimeout(() => {
+            msg.textContent = "";
+          }, 2000);
+          hideLoading();
+        }, 700); // giả lập loading
+      };
+      renderReviews();
+    </script>
+  </body>
+</html>

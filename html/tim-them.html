@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tìm thêm - TADN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style-taskbar.css">
+    <link rel="stylesheet" href="../css/loading.css">
+    <style>
+        .tim-them-form {
+            max-width: 520px;
+            margin: 40px auto 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            background: rgba(0,255,231,0.07);
+            border-radius: 18px;
+            box-shadow: 0 2px 16px rgba(0,255,231,0.10);
+            padding: 36px 28px;
+        }
+        .tim-them-form label {
+            font-weight: 600;
+            color: #00b3ff;
+        }
+        .tim-them-form select, .tim-them-form input {
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1.5px solid #00b3ff;
+            background: #232526;
+            color: #eaeaea;
+            font-size: 1em;
+            outline: none;
+        }
+        .tim-them-form button[type="submit"] {
+            background: linear-gradient(90deg, #00ffe7 0%, #00b3ff 100%);
+            color: #232526;
+            border: none;
+            padding: 13px 0;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 12px rgba(0,255,231,0.15);
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        .tim-them-form button[type="submit"]:hover {
+            background: linear-gradient(90deg, #00b3ff 0%, #00ffe7 100%);
+            color: #fff;
+            box-shadow: 0 4px 24px rgba(0,255,231,0.25);
+        }
+        #tim-them-result {
+            max-width: 700px;
+            margin: 36px auto 0 auto;
+        }
+    @media (max-width: 480px) {
+        .tim-them-form {
+            max-width: 100vw;
+            padding: 14px 2vw;
+            border-radius: 10px;
+            gap: 10px;
+        }
+        .tim-them-form label {
+            font-size: 1em;
+        }
+        .tim-them-form select, .tim-them-form input {
+            font-size: 1em;
+            padding: 8px 6px;
+            border-radius: 6px;
+        }
+        .tim-them-form button[type="submit"] {
+            font-size: 1em;
+            padding: 8px 0;
+            border-radius: 16px;
+        }
+        #tim-them-result {
+            max-width: 100vw;
+            margin: 18px auto 0 auto;
+            font-size: 1em;
+        }
+    }
+    </style>
+</head>
+<body>
+    <!-- Loading Effect Start -->
+    <div class="Strich1" id="global-loading">
+      <div class="Strich2">
+        <div class="bubble"></div>
+        <div class="bubble1"></div>
+        <div class="bubble2"></div>
+        <div class="bubble3"></div>
+        <div class="bubble4"></div>
+      </div>
+    </div>
+    <!-- Loading Effect End -->
+    <header class="main-header">
+        <div class="container nav-flex">
+            <div class="logo">TADN</div>
+            <span class="flower-animation" style="display:inline-block;vertical-align:middle;margin-right:12px;">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g>
+                    <circle cx="16" cy="16" r="5" fill="#FFD700"/>
+                    <g fill="#FF69B4">
+                      <ellipse cx="16" cy="5" rx="3" ry="6"/>
+                      <ellipse cx="16" cy="27" rx="3" ry="6"/>
+                      <ellipse cx="5" cy="16" rx="6" ry="3"/>
+                      <ellipse cx="27" cy="16" rx="6" ry="3"/>
+                      <ellipse cx="8.5" cy="8.5" rx="3" ry="6" transform="rotate(-45 8.5 8.5)"/>
+                      <ellipse cx="23.5" cy="8.5" rx="3" ry="6" transform="rotate(45 23.5 8.5)"/>
+                      <ellipse cx="8.5" cy="23.5" rx="3" ry="6" transform="rotate(45 8.5 23.5)"/>
+                      <ellipse cx="23.5" cy="23.5" rx="3" ry="6" transform="rotate(-45 23.5 23.5)"/>
+                    </g>
+                  </g>
+                </svg>
+            </span>
+            <nav class="nav-bar">
+                <ul class="nav-list">
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li class="nav-protect"><a href="https://www.ctu.edu.vn/" target="_blank" rel="noopener noreferrer">Tin tức</a></li>
+                    <li class="nav-protect"><a href="kien-thuc.html">Kiến thức</a></li>
+                    <li class="nav-protect"><a href="index.html#contact">Liên hệ</a></li>
+                    <li class="nav-protect"><a href="tim-them.html" class="active">Tìm thêm</a></li>
+                    <li class="nav-protect"><a href="review.html">Đánh giá</a></li>
+                    <li id="nav-auth-btn"><a href="login.html" class="nav-btn">Đăng nhập</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        <h1 style="text-align:center;margin-bottom:24px;color:#00b3ff;letter-spacing:1px;">Tìm thêm</h1>
+        <form class="tim-them-form">
+            <label for="search-class">Chọn lớp hoặc chủ đề:</label>
+            <select id="search-class">
+                <option value="all">Tất cả</option>
+                <option value="lop1">Lớp 1</option>
+                <option value="lop2">Lớp 2</option>
+                <option value="lop3">Lớp 3</option>
+                <option value="lop4">Lớp 4</option>
+                <option value="lop5">Lớp 5</option>
+                <option value="lop6">Lớp 6</option>
+                <option value="lop7">Lớp 7</option>
+                <option value="lop8">Lớp 8</option>
+                <option value="lop9">L��p 9</option>
+                <option value="lop10">Lớp 10</option>
+                <option value="lop11">Lớp 11</option>
+                <option value="lop12">Lớp 12</option>
+                <option value="laptrinh">Lập trình</option>
+                <option value="tienganh">Tiếng Anh</option>
+                <option value="de-thi">Đề thi</option>
+                <option value="giao-an">Giáo án</option>
+            </select>
+            <label for="search-type">Loại tài nguyên:</label>
+            <select id="search-type">
+                <option value="all">Tất cả</option>
+                <option value="giai-bai-tap">Giải bài tập SGK & SBT</option>
+                <option value="tai-lieu">Tài liệu giáo viên</option>
+                <option value="sach">Sách</option>
+                <option value="khoa-hoc">Khóa học</option>
+                <option value="thi-online">Thi online</option>
+                <option value="hoi-dap">Hỏi đáp</option>
+            </select>
+            <label for="search-keyword">Từ khóa (tùy chọn):</label>
+            <input type="text" id="search-keyword" placeholder="Nhập từ khóa (ví dụ: Toán, Văn, Python, Đề thi...)" />
+            <button type="submit" class="btn-main">Tìm kiếm</button>
+        </form>
+        <div id="tim-them-result"></div>
+    </main>
+    <footer class="main-footer" style="z-index:2;position:relative;">
+        <div class="container" style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:center;gap:32px;padding:32px 0 0 0;">
+            <div style="flex:1;min-width:180px;max-width:260px;text-align:center;">
+                <div class="logo" style="font-size:1.5em;letter-spacing:1px;color:#00ffe7;margin-bottom:8px;">TADN</div>
+                <div style="color:#b2fefa;font-size:1em;">Nền tảng chia sẻ kiến thức, tin tức, tài liệu và cộng đồng công nghệ.</div>
+            </div>
+            <div style="flex:1;min-width:180px;max-width:260px;text-align:center;">
+                <h3 style="color:#00ffe7;margin-top:0;margin-bottom:10px;font-size:1.08em;">Liên hệ</h3>
+                <div style="color:#b2fefa;font-size:0.98em;line-height:1.7;">
+                    <div><b>Email:</b> <a href="mailto:lytuan267728@gmail.com" style="color:#00b3ff;">lytuan267728@gmail.com</a></div>
+                    <div><b>Hotline:</b> 09********</div>
+                    <div><b>Địa chỉ:</b> Ninh Kiều, Cần Thơ</div>
+                </div>
+            </div>
+            <div style="flex:1;min-width:180px;max-width:260px;text-align:center;">
+                <h3 style="color:#00ffe7;margin-top:0;margin-bottom:10px;font-size:1.08em;">Chính sách</h3>
+                <ul style="list-style:none;padding:0;margin:0 0 10px 0;">
+                    <li><a href="#" style="color:#00b3ff;text-decoration:none;">Chính sách bảo mật</a></li>
+                    <li><a href="#" style="color:#00b3ff;text-decoration:none;">Quy định sử dụng</a></li>
+                    <li><a href="#" style="color:#00b3ff;text-decoration:none;">Bản quyền nội dung</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align:center;color:#b2fefa;font-size:0.97em;margin-top:18px;padding-bottom:12px;">
+            <b>Bản quyền:</b> Mọi nội dung trên website thuộc bản quyền của TADN. Nghiêm cấm sao chép, phát hành lại khi chưa được phép.<br>
+            <span style="color:#b2fefa;">Copyright © 2024 TADN. All rights reserved.</span>
+        </div>
+    </footer>
+    <script src="../js/script.js"></script>
+    <script>
+    document.querySelector('.tim-them-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const lop = document.getElementById('search-class').value;
+        const type = document.getElementById('search-type').value;
+        const keyword = document.getElementById('search-keyword').value.trim();
+        const result = document.getElementById('tim-them-result');
+        // Kết quả mẫu lấy cảm hứng từ VietJack
+        let html = `<div style='background:rgba(0,255,231,0.08);border-radius:12px;padding:18px 16px;margin-top:8px;box-shadow:0 2px 8px rgba(0,255,231,0.08);'>`;
+        html += `<b>Kết quả cho:</b> <span style='color:#00b3ff;'>${lop === 'all' ? 'Tất cả' : document.querySelector('#search-class option:checked').textContent}</span> - <span style='color:#00b3ff;'>${type === 'all' ? 'Tất cả' : document.querySelector('#search-type option:checked').textContent}</span>`;
+        if (keyword) html += ` - <span style='color:#00b3ff;'>${keyword}</span>`;
+        html += `<br><br><ul style='margin-left:18px;'>`;
+        if (type === 'giai-bai-tap' || type === 'all') {
+            html += `<li><b>Giải bài tập:</b> <a href='https://www.vietjack.com/' target='_blank' style='color:#00b3ff;'>Xem chi tiết trên VietJack</a></li>`;
+        }
+        if (type === 'tai-lieu' || type === 'all') {
+            html += `<li><b>Tài liệu giáo viên:</b> <a href='https://tailieugiaovien.com.vn/' target='_blank' style='color:#00b3ff;'>Tài liệu tham khảo</a></li>`;
+        }
+        if (type === 'sach' || type === 'all') {
+            html += `<li><b>Sách:</b> <a href='https://s.shopee.vn/9pM14KghRi' target='_blank' style='color:#00b3ff;'>Nhà sách VietJack</a></li>`;
+        }
+        if (type === 'khoa-hoc' || type === 'all') {
+            html += `<li><b>Khóa học:</b> <a href='https://khoahoc.vietjack.com/' target='_blank' style='color:#00b3ff;'>Khóa học online</a></li>`;
+        }
+        if (type === 'thi-online' || type === 'all') {
+            html += `<li><b>Thi online:</b> <a href='https://khoahoc.vietjack.com/trac-nghiem' target='_blank' style='color:#00b3ff;'>Thi trắc nghiệm</a></li>`;
+        }
+        if (type === 'hoi-dap' || type === 'all') {
+            html += `<li><b>Hỏi đáp:</b> <a href='https://hoidapvietjack.com/' target='_blank' style='color:#00b3ff;'>Cộng đồng hỏi đáp</a></li>`;
+        }
+        html += `</ul></div>`;
+        result.innerHTML = html;
+    });
+    </script>
+</body>
+</html>
